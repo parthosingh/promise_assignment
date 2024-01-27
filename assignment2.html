@@ -1,0 +1,192 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #processingMessage {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        #successMessage, #failureMessage {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #successMessage {
+            color: green;
+        }
+
+        #failureMessage {
+            color: red;
+        }
+    </style>
+    <title>PhonePe Payment System</title>
+</head>
+<body>
+
+<button onclick="initiatePayment()">Make Payment</button>
+
+<div id="processingMessage">Processing your payment...</div>
+<div id="successMessage">Payment successful! Thank you for using PhonePe.</div>
+<div id="failureMessage">Payment failed. Please try again later.</div>
+
+<script>
+    function initiatePayment() {
+        showProcessingUI();
+
+        const paymentPromise = new Promise((resolve, reject) => {
+            // Simulating payment processing, you can modify this logic as needed
+            const isSuccess = Math.random() < 0.8; // 80% chance of success
+
+            setTimeout(() => {
+                if (isSuccess) {
+                    resolve();
+                } else {
+                    reject();
+                }
+            }, 2000); // Simulating a 2-second payment processing time
+        });
+
+        paymentPromise.then(() => {
+            showSuccessUI();
+        }).catch(() => {
+            showFailureUI();
+        });
+    }
+
+    function showProcessingUI() {
+        document.getElementById('processingMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+        document.getElementById('failureMessage').style.display = 'none';
+    }
+
+    function showSuccessUI() {
+        document.getElementById('processingMessage').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('failureMessage').style.display = 'none';
+    }
+
+    function showFailureUI() {
+        document.getElementById('processingMessage').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'none';
+        document.getElementById('failureMessage').style.display = 'block';
+    }
+</script>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhonePe Payment System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #processingMessage {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        #success, #failure {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+<body>
+    <button onclick="Payment()">Make Payment</button>
+    <div id="processingMessage"></div>
+    <div id="success"></div>
+    <div id="failure"></div>
+    
+    <script>
+        function Payment() {
+            let PaymentPromise = new Promise(function (resolve, reject) {
+                showProcessingUI();
+                let isSuccess = Math.random() < 0.8;
+
+                setTimeout(function () {
+                    if (isSuccess) {
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                }, 2000);
+            });
+
+            PaymentPromise.then(function () {
+                showSuccessUI();
+            }).catch(function () {
+                showFailureUI();
+            });
+        }
+
+        function showProcessingUI() {
+            let processingMessage = document.getElementById('processingMessage');
+            processingMessage.innerText = "Processing your payment...";
+           processingMessage.style.display = 'block';
+            document.getElementById('success').style.display = 'none';
+            document.getElementById('failure').style.display = 'none';
+        }
+
+        function showSuccessUI() {
+            let success = document.getElementById('success');
+            success.innerText = "Payment successful! Thank you for using PhonePe.";
+            success.style.display = 'block';
+            document.getElementById('processingMessage').style.display = 'none';
+            document.getElementById('failure').style.display = 'none';
+        }
+
+        function showFailureUI() {
+            let failure = document.getElementById('failure');
+            failure.innerText = "Payment failed. Please try again later.";
+            failure.style.display = 'block';
+            document.getElementById('processingMessage').style.display = 'none';
+            document.getElementById('success').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
